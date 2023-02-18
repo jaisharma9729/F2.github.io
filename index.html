@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Table</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+</head>
+<style>
+    body{
+        margin: 40px 70px;
+        background-color: black;
+        color: white;
+    }
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #id2{
+        flex-direction: column;
+        width: 500px;
+        margin-bottom: 20px;
+        margin-left: 15px;
+        height: 32px;
+        padding-left: 20px;
+        font-size: 15px;
+        background-color: black;
+        border: 1px solid white;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        outline: none;
+        color: white;
+    }
+    #id2:focus{
+        border: 1px solid rgb(245, 116, 116)
+    }
+    #id3{
+        width: 606px;
+        height: 34px;
+        margin-bottom: 30px;
+        font-weight: 700;
+    
+    }
+    table,th,td{
+        border: 1px solid white;
+        height: 30px;
+        align-items: center;
+        font-weight: 500;
+    }
+    table{
+        width: 100%;
+        border-collapse: collapse ;
+    }
+    
+    
+</style>
+<body>
+     <div class="container">
+<h1>Library Management System</h1>
+
+<form method="POST" name="sample" autocomplete="off">
+<br>
+    Book Name <input type="text" name="bookName" id="id2" onfocus="this.value=' '"> <br>
+    Issued To <input type="text" name="issued" id="id2" onfocus="this.value=' '" style="margin-left: 30.5px;">
+
+    <br><br>
+    <input type="button" id="id3" name="add" value="Issue Book" onclick="addStudent();" class="btn btn-success">
+
+            <table id="tbl" class="table" >
+                <thead >
+                <th>ID</th> 
+                <th>Book Name</th>
+                <th>Issued To</th>
+                <th>Issuesd Date and Time</th>
+                <th>Status</th>
+               
+                </thead>
+                  
+	    
+                 <tbody>
+                     
+                 </tbody>
+             </table>
+
+</form>
+
+ <script type="text/javascript">
+       function addStudent()
+    { 
+        var date = new Date();
+	    var current_date = date.getDate()+"/"+(date.getMonth()+1)+"/"+ date.getFullYear();
+	    var current_time = date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds();
+	    var date_time = current_date+" at "+current_time;	
+	    
+      
+        var bookName=document.sample.bookName.value; 
+        var issued=document.sample.issued.value; 
+        
+        
+
+        var tr = document.createElement('tr');
+
+        
+        var td1 = tr.appendChild(document.createElement('td'));
+        var td2 = tr.appendChild(document.createElement('td'));
+        var td3 = tr.appendChild(document.createElement('td'));
+        var td4 = tr.appendChild(document.createElement('td'));
+        var td5 = tr.appendChild(document.createElement('td'));
+       
+        td1.style.textAlign='center';
+        td2.style.textAlign='center';
+        td3.style.textAlign='center';
+        td4.style.textAlign='center';
+        td5.style.textAlign='center';
+        
+
+        td1.innerHTML=1;
+        td2.innerHTML=bookName;
+        td3.innerHTML=issued;
+        td4.innerHTML = date_time;
+        td5.innerHTML = '<span id="pl" style="color:red;" onclick="UpStud(this);">Not returned</span>'
+        
+        document.getElementById("tbl").appendChild(tr);
+
+    }
+    function UpStud(stud){
+        document.getElementById("pl").innerHTML = "Returned";
+        document.getElementById("pl").style.color="Green";
+    }
+</script>
+</div>
+    </body>
+</html>
